@@ -1,0 +1,93 @@
+<%- include('./layouts/header.ejs')  %>
+
+<!-- myGroup,JoinedGroup -->
+
+
+
+<h2 class="mb-4">Chat with Groups</h2>
+
+
+<div class="row">
+  <div class="col-md-3">
+    <div class="list-group">
+      <%
+         if(myGroup.length>0){
+           for(let i=0;i<myGroup.length;i++){ %>
+
+<li class="list-group-item list-group-item-dark group-list cursor-pointer " data-id="<%=myGroup[i]._id%>">
+    <img src="<%=myGroup[i].image %>" width="40px" height="40px" alt=" <%=myGroup[i].name %>">
+    <%=myGroup[i].name %>
+    
+</li>
+<% }
+   } %>
+
+   <%
+   if(JoinedGroup.length>0){
+     for(let i=0;i<JoinedGroup.length;i++){ %>
+
+<li class="list-group-item list-group-item-dark group-list cursor-pointer " data-id="<%=JoinedGroup[i]['group_id']._id%>">
+<img src="<%=JoinedGroup[i]['group_id'].image %>" width="40px" height="40px" alt=" <%=JoinedGroup[i]['group_id'].name %>">
+<%=JoinedGroup[i]['group_id'].name %>
+
+</li>
+<% }
+} %>
+
+
+    </div>
+  </div>
+  <div class="col-md-9">
+      <div class="g-start-head">Click to Start the chat</div>
+
+<div class="g-chat-section">
+    <div id="g-chat-container" class="g-chat-container">
+     
+    </div>
+    <form  id="g-chat-form">
+        <input type="text" name="g-message" placeholder="enter message" id="g-message" class="border" required>
+        <input type="submit" value="send" class="btn btn-primary">
+    </form>
+</div>
+
+
+  </div>
+
+</div>
+
+
+
+<div class="modal fade" id="deleteGroupMessage" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Delete Group Message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <form id="delete-g-chat-form">
+      <div class="modal-body">
+        <input type="text" readonly name="id" id="delete-g-message-id" style="width: 300px;">
+             <p>are you sure you want to delete below message? </p>
+             <p><b  id="delete-g-message"></b></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-danger">delete</button>
+      </div>
+    </form>
+
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<%- include('./layouts/footer.ejs')  %>
+
